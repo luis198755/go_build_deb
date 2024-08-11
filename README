@@ -1,0 +1,38 @@
+# Go Build Deb
+
+This repository contains a Go program (`deb_package_creator.go`) that simplifies the process of creating Debian packages (.deb) for Go projects.
+
+## deb_package_creator.go
+
+This Go program automates the steps required to build a .deb package for a Go application. It utilizes native Go libraries for archive creation and system commands execution.
+
+### Features
+
+- **Automatic dependency resolution:** The program can identify and include necessary Go dependencies in the final package.
+- **Customizable package metadata:** Specify package name, version, description, maintainer, and other relevant information directly within the script.
+- **Simplified build process:** Execute a single command to generate a ready-to-install .deb package.
+- **Clear directory structure:** The script enforces a clear project layout for source code, binaries, and packaging files.
+
+### How it Works
+
+1. **Configuration:** The script defines several variables at the beginning that need to be adjusted based on your project specifics. This includes:
+    - Project Name
+    - Project Version
+    - Maintainer Name and Email
+    - Binary Name
+    - Project Description
+    - Package Dependencies (optional)
+2. **Directory Setup:** It creates the necessary directories for the packaging process, specifically `DEBIAN` for control files and `usr/bin` to house the application binary.
+3. **Binary Compilation:** It builds the Go project binary using the `go build` command and places it within the designated directory.
+4. **Control File Generation:** A `control` file is generated within the `DEBIAN` directory, containing essential package metadata based on the variables configured earlier.
+5. **Debian Package Creation:** The `dpkg-deb` command is invoked, utilizing the structured directories and files to generate the final .deb package.
+
+### Usage
+
+1. **Place the script:** Save `deb_package_creator.go` in the root directory of your Go project.
+2. **Modify configuration:** Update the variables at the beginning of the script to reflect your project details.
+3. **Install dependencies:** If your project has external dependencies, list them within the dedicated variable.
+4. **Run the script:** Execute the following command in your terminal:
+
+   ```bash
+   go run deb_package_creator.go
