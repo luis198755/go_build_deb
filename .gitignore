@@ -1,4 +1,5 @@
 deb_package_creator
 /wifipass
 /wifiPassGen
+/WifiPassGen
 *.deb
